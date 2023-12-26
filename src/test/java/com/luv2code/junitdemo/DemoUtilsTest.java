@@ -2,6 +2,7 @@ package com.luv2code.junitdemo;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,8 +10,13 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -65,6 +71,28 @@ class DemoUtilsTest {
         assertTrue(demoUtils.isGreater(gradeOne, gradeTwo));
         assertFalse(demoUtils.isGreater(gradeTwo, gradeOne));
     }
+
+    @DisplayName("Array Equals")
+    @Test
+    void testArrayEquals() {
+         String[] stringArray = {"A","B","C"};
+         assertArrayEquals(stringArray, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays should be the same");
+    }
+
+    @DisplayName("Iterable equals")
+    @Test
+    void testIterableEquals() {
+        List<String> theList = List.of("luv", "2", "code");
+        assertIterableEquals(theList, demoUtils.getAcademyInList(), "Expected list should be the same");
+    }
+
+    @DisplayName("Lines match")
+    @Test
+    void testLinesMatch() {
+        List<String> theList = List.of("luv", "2", "code");
+        assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
+    }
+
 
 /*
     @AfterEach

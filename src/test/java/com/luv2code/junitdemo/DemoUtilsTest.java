@@ -8,7 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.time.Duration;
 import java.util.List;
@@ -28,6 +31,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@TestMethodOrder(MethodOrderer.DisplayName.class)
+//@TestMethodOrder((MethodOrderer.MethodName.class))
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -38,7 +44,8 @@ class DemoUtilsTest {
     }
 
     @Test
-   @DisplayName("Equals and Not Equals")
+    @DisplayName("Equals and Not Equals")
+    @Order(1)
     void testEqualsAndNotEquals() {
 
         assertEquals(6, demoUtils.add(2,4), "2+4 must be 6");
@@ -47,7 +54,8 @@ class DemoUtilsTest {
     }
 
     @Test
-   @DisplayName("Null and Not Null")
+    @DisplayName("Null and Not Null")
+    @Order(0)
     void testNullAndNotNull() {
 
         String str1 = null;
@@ -68,6 +76,7 @@ class DemoUtilsTest {
 
     @DisplayName("True and False")
     @Test
+    @Order(30)
     void testTrueFalse() {
         int gradeOne = 10;
         int gradeTwo = 5;
@@ -92,6 +101,7 @@ class DemoUtilsTest {
 
     @DisplayName("Lines match")
     @Test
+    @Order(50)
     void testLinesMatch() {
         List<String> theList = List.of("luv", "2", "code");
         assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");

@@ -43,6 +43,12 @@ class DemoUtilsTest {
         demoUtils = new DemoUtils();
     }
 
+    @DisplayName("Multiply")
+    @Test
+    void testMultiply() {
+        assertEquals(12,demoUtils.multiply(6,2),"6*2 should be 12");
+    }
+
     @Test
     @DisplayName("Equals and Not Equals")
     @Order(1)

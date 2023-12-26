@@ -10,13 +10,14 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-//@DisplayNameGeneration(DisplayNameGenerator.Simple.class)
-//@DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -27,7 +28,7 @@ class DemoUtilsTest {
     }
 
     @Test
-   // @DisplayName("Equals and Not Equals")
+   @DisplayName("Equals and Not Equals")
     void testEqualsAndNotEquals() {
 
         assertEquals(6, demoUtils.add(2,4), "2+4 must be 6");
@@ -36,7 +37,7 @@ class DemoUtilsTest {
     }
 
     @Test
-  //  @DisplayName("Null and Not Null")
+   @DisplayName("Null and Not Null")
     void testNullAndNotNull() {
 
         String str1 = null;
@@ -46,6 +47,25 @@ class DemoUtilsTest {
         assertNotNull(demoUtils.checkNull(str2), "Object should not be null");
 
     }
+
+    @DisplayName("Same and Not Same")
+    @Test
+    void testSameAndNotSame() {
+        String str = "luv2code";
+        assertSame(demoUtils.getAcademy(), demoUtils.getAcademyDuplicate(), "Objects should refer to the same object");
+        assertNotSame(str, demoUtils.getAcademy(), "Objects should not refer to the same object");
+    }
+
+    @DisplayName("True and False")
+    @Test
+    void testTrueFalse() {
+        int gradeOne = 10;
+        int gradeTwo = 5;
+
+        assertTrue(demoUtils.isGreater(gradeOne, gradeTwo));
+        assertFalse(demoUtils.isGreater(gradeTwo, gradeOne));
+    }
+
 /*
     @AfterEach
     void tearDownAfterEach() {
